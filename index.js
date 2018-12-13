@@ -35,8 +35,25 @@ const updateContent = (content) => {
 // #4 - Write a reducer function that accepts stte and an action
 // and returns the next version of the state
 const not = (state=0, action) => {
-
+    switch(action.type) {
+        case ACTION_UPDATE.type:
+            return {
+                note: {
+                    content: action.content
+                }
+            }
+        default:
+            return state;
+    }
 }
 
+// #5 - Create a store that uses your reducer
+const store = createStore(note);
 
+
+// #5 and a half - export the store and action creator
+module.exports = {
+    store,
+    updateContent
+};
 
